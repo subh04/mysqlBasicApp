@@ -106,6 +106,14 @@ public class MySqliteHandler extends SQLiteOpenHelper {
         database.delete(TABLE_COMPUTER,COLUMN_ID+" =?",new String[]{String.valueOf(computer.getId())});
         database.close();
     }
+    //get the number of objects int the database
+    public int getComputerCount(){
+        String computerCountQuery="select * from "+TABLE_COMPUTER;
+        SQLiteDatabase database=MySqliteHandler.this.getWritableDatabase(); //getReadable could also be used
+        Cursor cursor=database.rawQuery(computerCountQuery,null);
+        cursor.close();
+        return cursor.getCount();
+    }
 
 
 }
